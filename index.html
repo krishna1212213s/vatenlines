@@ -26,7 +26,7 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            transition: transform 0.25s ease;
             position: absolute;
         }
 
@@ -134,9 +134,9 @@
         const yesBtn = document.getElementById("yesBtn");
         const noBtn = document.getElementById("noBtn");
 
-        // Slower growth with a max limit
-        yesScale += 0.35;
-        if (yesScale > 4) yesScale = 4; // prevents it from getting absurdly huge
+        // Slower, smoother growth
+        yesScale += 0.15;
+        if (yesScale > 2.5) yesScale = 2.5; // max size cap
         yesBtn.style.transform = "scale(" + yesScale + ")";
 
         // Change No text
