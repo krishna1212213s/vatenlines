@@ -30,18 +30,20 @@
             position: absolute;
         }
 
+        /* YES on left */
         #yesBtn {
             background: linear-gradient(45deg, #ff9a9e, #ffb7b2);
             color: white;
-            left: 30%;
+            left: 25%;
             top: 45%;
             z-index: 2;
         }
 
+        /* NO on right — stays fixed */
         #noBtn {
             background-color: #ff4d4d;
             color: white;
-            left: 60%;
+            right: 20%;
             top: 45%;
             z-index: 3;
         }
@@ -49,22 +51,32 @@
         #message {
             position: absolute;
             width: 100%;
-            top: 72%;
+            top: 70%;
             text-align: center;
-            font-size: 28px;
+            font-size: 30px;
             font-weight: bold;
             color: #ff4d6d;
+        }
+
+        #flower {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            width: 220px;
         }
     </style>
 </head>
 <body>
 
-<h1>will U be my vatenlines this year?</h1>
+<h1 id="question">will U be my vatenlines this year?</h1>
 
 <button id="yesBtn" onclick="sayYes()">Yes</button>
 <button id="noBtn" onclick="handleNo()">No</button>
 
 <div id="message"></div>
+<img id="flower" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="cute flower">
 
 <script>
     let yesScale = 1;
@@ -91,76 +103,30 @@
         "my heart can’t take this",
         "try clicking yes instead 😌",
         "I’ll be very sad…",
-        "like VERY sad 😢",
-        "this is your villain origin story",
-        "do you hate happiness?",
-        "are you allergic to love??",
-        "be honest… misclick right?",
-        "you meant yes, didn’t you?",
-        "I’ll pretend I didn’t see that",
-        "we can restart… click yes 🥹",
-        "the yes button looks cute tho",
-        "don’t break my imaginary heart",
-        "this is getting awkward",
-        "the yes button is getting bigger for a reason",
-        "it’s destiny at this point",
-        "the universe says yes",
-        "even the code wants yes",
-        "you’re running out of nos…",
-        "this button is tired of moving",
-        "plot twist: yes was the right answer",
-        "final final chance!!",
-        "okay NOW it’s the last chance",
-        "…still no?",
-        "wow you’re persistent",
-        "I admire the dedication but still…",
-        "yes is looking pretty good rn",
-        "don’t you wanna see what happens if you press yes?",
-        "curiosity is calling 📞",
-        "romance is loading…",
-        "error 404: good decision not found",
-        "system suggests pressing YES",
-        "are we in a rom-com right now?",
-        "this is the part where you say yes",
-        "the audience is screaming YES",
-        "fine… I’ll ask again later 😤"
+        "like VERY sad 😢"
     ];
 
     function sayYes() {
-        document.getElementById("message").innerText = "Yay!! I knew it!";
+        document.getElementById("message").innerText = "YAYYYYYYY!! 💖🌸";
+        document.getElementById("flower").style.display = "block";
+
+        document.getElementById("yesBtn").style.display = "none";
+        document.getElementById("noBtn").style.display = "none";
+        document.getElementById("question").style.display = "none";
     }
 
     function handleNo() {
         const yesBtn = document.getElementById("yesBtn");
         const noBtn = document.getElementById("noBtn");
 
-        // Slower, smoother growth
-        yesScale += 0.15;
-        if (yesScale > 2.5) yesScale = 2.5; // max size cap
+        // Gentle unlimited growth
+        yesScale += 0.12;
         yesBtn.style.transform = "scale(" + yesScale + ")";
 
-        // Change No text
         if (noClicks < noMessages.length) {
             noBtn.innerText = noMessages[noClicks];
             noClicks++;
-        } else {
-            noBtn.innerText = "ok fine you win 😤";
         }
-
-        moveNoButton(noBtn);
-    }
-
-    function moveNoButton(noBtn) {
-        const padding = 20;
-
-        const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-        const maxY = window.innerHeight - noBtn.offsetHeight - padding;
-
-        const randomX = Math.random() * maxX;
-        const randomY = Math.random() * maxY;
-
-        noBtn.style.left = randomX + "px";
-        noBtn.style.top = randomY + "px";
     }
 </script>
 
