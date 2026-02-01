@@ -35,13 +35,16 @@
             transition: all 0.2s ease;
         }
 
+        /* Pretty Yes button */
         #yesBtn {
-            background-color: #ff4d6d;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
             color: white;
         }
 
+        /* Red No button */
         #noBtn {
-            background-color: #ccc;
+            background-color: #ff4d4d;
+            color: white;
         }
 
         #message {
@@ -64,17 +67,15 @@
 </div>
 
 <script>
-    let yesSize = 18; // starting font size
+    let yesScale = 1;
 
     function sayYes() {
         document.getElementById("message").innerText = "Yay!! I knew it!";
     }
 
     function growYes() {
-        yesSize += 6; // increase size every time No is clicked
-        const yesBtn = document.getElementById("yesBtn");
-        yesBtn.style.fontSize = yesSize + "px";
-        yesBtn.style.padding = (12 + yesSize / 3) + "px " + (25 + yesSize / 2) + "px";
+        yesScale += 0.15; // grows a bit more each time
+        document.getElementById("yesBtn").style.transform = "scale(" + yesScale + ")";
     }
 </script>
 
