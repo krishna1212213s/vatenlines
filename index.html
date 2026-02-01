@@ -10,7 +10,7 @@
             justify-content: center;
             align-items: center;
             font-family: Arial, sans-serif;
-            background-color: #ffd6e7; /* light pink */
+            background-color: #ffd6e7;
             text-align: center;
         }
 
@@ -23,6 +23,7 @@
 
         h1 {
             margin-bottom: 30px;
+            color: #ff4d6d;
         }
 
         button {
@@ -32,7 +33,7 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: transform 0.2s ease;
         }
 
         /* Pretty Yes button */
@@ -74,7 +75,7 @@
     }
 
     function growYes() {
-        yesScale += 0.15; // grows a bit more each time
+        yesScale += 0.25; // bigger growth each time No is clicked
         document.getElementById("yesBtn").style.transform = "scale(" + yesScale + ")";
     }
 </script>
