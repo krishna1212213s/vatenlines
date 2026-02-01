@@ -36,16 +36,17 @@
             align-items: center;
             gap: 20px;
             position: relative;
-            min-height: 80px;
+            min-height: 100px;
         }
 
         button {
             padding: 14px 30px;
             font-size: 18px;
             border: none;
-            border-radius: 50px; /* fully rounded edges */
+            border-radius: 50px;
             cursor: pointer;
             transition: all 0.2s ease;
+            white-space: nowrap;
         }
 
         #yesBtn {
@@ -66,6 +67,7 @@
             font-size: 20px;
             font-weight: bold;
             color: #ff4d6d;
+            min-height: 28px;
         }
     </style>
 </head>
@@ -84,19 +86,40 @@
 
 <script>
     let yesSize = 18;
+    let noClicks = 0;
+
+    const noMessages = [
+        "are you sure?",
+        "really sure?",
+        "really really sure?",
+        "think again 🥺",
+        "last chance!",
+        "one more chance?",
+        "another last chance 😭"
+    ];
 
     function sayYes() {
         document.getElementById("message").innerText = "Yay!! I knew it!";
     }
 
     function growYes() {
-        yesSize += 6;
         const yesBtn = document.getElementById("yesBtn");
         const noBtn = document.getElementById("noBtn");
         const box = document.getElementById("box");
+        const message = document.getElementById("message");
 
+        // Make Yes grow
+        yesSize += 6;
         yesBtn.style.fontSize = yesSize + "px";
         yesBtn.style.padding = (14 + yesSize/4) + "px " + (30 + yesSize/3) + "px";
+
+        // Change No button text with silly confirmations
+        if (noClicks < noMessages.length) {
+            noBtn.innerText = noMessages[noClicks];
+            noClicks++;
+        } else {
+            noBtn.innerText = "ok fine you win 😤";
+        }
 
         moveNoButton(yesBtn, noBtn, box);
     }
