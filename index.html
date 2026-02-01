@@ -10,38 +10,55 @@
             justify-content: center;
             align-items: center;
             font-family: Arial, sans-serif;
-            background-color: #ffd6e7; /* light pink */
+            background-color: #ffd6e7;
             text-align: center;
         }
 
         .box {
+            position: relative;
             background: white;
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 420px;
+            overflow: hidden;
         }
 
         h1 {
             margin-bottom: 30px;
+            color: #ff4d6d;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            min-height: 80px;
         }
 
         button {
-            padding: 12px 25px;
-            margin: 10px;
+            padding: 14px 30px;
             font-size: 18px;
             border: none;
-            border-radius: 10px;
+            border-radius: 50px; /* fully rounded edges */
             cursor: pointer;
             transition: all 0.2s ease;
         }
 
         #yesBtn {
-            background-color: #ff4d6d;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
             color: white;
+            z-index: 2;
         }
 
         #noBtn {
-            background-color: #ccc;
+            background-color: #ff4d4d;
+            color: white;
+            position: absolute;
+            left: 55%;
         }
 
         #message {
@@ -54,27 +71,59 @@
 </head>
 <body>
 
-<div class="box">
+<div class="box" id="box">
     <h1>will U be my vatenlines this year?</h1>
 
-    <button id="yesBtn" onclick="sayYes()">Yes</button>
-    <button id="noBtn" onclick="growYes()">No</button>
+    <div class="buttons">
+        <button id="yesBtn" onclick="sayYes()">Yes</button>
+        <button id="noBtn" onclick="growYes()">No</button>
+    </div>
 
     <div id="message"></div>
 </div>
 
 <script>
-    let yesSize = 18; // starting font size
+    let yesSize = 18;
 
     function sayYes() {
         document.getElementById("message").innerText = "Yay!! I knew it!";
     }
 
     function growYes() {
-        yesSize += 6; // increase size every time No is clicked
+        yesSize += 6;
         const yesBtn = document.getElementById("yesBtn");
+        const noBtn = document.getElementById("noBtn");
+        const box = document.getElementById("box");
+
         yesBtn.style.fontSize = yesSize + "px";
-        yesBtn.style.padding = (12 + yesSize / 3) + "px " + (25 + yesSize / 2) + "px";
+        yesBtn.style.padding = (14 + yesSize/4) + "px " + (30 + yesSize/3) + "px";
+
+        moveNoButton(yesBtn, noBtn, box);
+    }
+
+    function moveNoButton(yesBtn, noBtn, box) {
+        const yesRect = yesBtn.getBoundingClientRect();
+        const noRect = noBtn.getBoundingClientRect();
+
+        const overlap = !(
+            yesRect.right < noRect.left ||
+            yesRect.left > noRect.right ||
+            yesRect.bottom < noRect.top ||
+            yesRect.top > noRect.bottom
+        );
+
+        if (overlap) {
+            const boxRect = box.getBoundingClientRect();
+
+            const maxX = boxRect.width - noBtn.offsetWidth - 20;
+            const maxY = boxRect.height - noBtn.offsetHeight - 20;
+
+            const randomX = Math.max(10, Math.random() * maxX);
+            const randomY = Math.max(80, Math.random() * maxY);
+
+            noBtn.style.left = randomX + "px";
+            noBtn.style.top = randomY + "px";
+        }
     }
 </script>
 
