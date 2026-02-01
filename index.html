@@ -10,7 +10,7 @@
             justify-content: center;
             align-items: center;
             font-family: Arial, sans-serif;
-            background-color: #ffd6e7;
+            background-color: #ffd6e7; /* light pink */
             text-align: center;
         }
 
@@ -19,25 +19,15 @@
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            width: 90%;
-            max-width: 400px;
         }
 
         h1 {
             margin-bottom: 30px;
-            color: #ff4d6d;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap; /* allows buttons to move instead of overlap */
         }
 
         button {
             padding: 12px 25px;
+            margin: 10px;
             font-size: 18px;
             border: none;
             border-radius: 10px;
@@ -46,13 +36,12 @@
         }
 
         #yesBtn {
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            background-color: #ff4d6d;
             color: white;
         }
 
         #noBtn {
-            background-color: #ff4d4d;
-            color: white;
+            background-color: #ccc;
         }
 
         #message {
@@ -68,26 +57,24 @@
 <div class="box">
     <h1>will U be my vatenlines this year?</h1>
 
-    <div class="buttons">
-        <button id="yesBtn" onclick="sayYes()">Yes</button>
-        <button id="noBtn" onclick="growYes()">No</button>
-    </div>
+    <button id="yesBtn" onclick="sayYes()">Yes</button>
+    <button id="noBtn" onclick="growYes()">No</button>
 
     <div id="message"></div>
 </div>
 
 <script>
-    let yesSize = 18;
+    let yesSize = 18; // starting font size
 
     function sayYes() {
         document.getElementById("message").innerText = "Yay!! I knew it!";
     }
 
     function growYes() {
-        yesSize += 6; // increase size each click
+        yesSize += 6; // increase size every time No is clicked
         const yesBtn = document.getElementById("yesBtn");
         yesBtn.style.fontSize = yesSize + "px";
-        yesBtn.style.padding = (12 + yesSize/4) + "px " + (25 + yesSize/3) + "px";
+        yesBtn.style.padding = (12 + yesSize / 3) + "px " + (25 + yesSize / 2) + "px";
     }
 </script>
 
