@@ -10,7 +10,6 @@
             width: 100%;
             background-color: #ffd6e7;
             font-family: Arial, sans-serif;
-            overflow: hidden;
         }
 
         h1 {
@@ -20,6 +19,13 @@
             font-size: 50px;
         }
 
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 80px; /* space between Yes and No */
+            margin-top: 80px;
+        }
+
         button {
             padding: 18px 38px;
             font-size: 24px;
@@ -27,43 +33,29 @@
             border-radius: 50px;
             cursor: pointer;
             transition: transform 0.25s ease;
-            position: absolute;
         }
 
-        /* YES on left */
         #yesBtn {
             background: linear-gradient(45deg, #ff9a9e, #ffb7b2);
             color: white;
-            left: 25%;
-            top: 45%;
-            z-index: 2;
         }
 
-        /* NO on right — stays fixed */
         #noBtn {
             background-color: #ff4d4d;
             color: white;
-            right: 20%;
-            top: 45%;
-            z-index: 3;
         }
 
         #message {
-            position: absolute;
-            width: 100%;
-            top: 70%;
             text-align: center;
+            margin-top: 60px;
             font-size: 30px;
             font-weight: bold;
             color: #ff4d6d;
         }
 
         #flower {
-            position: absolute;
-            top: 35%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             display: none;
+            margin: 30px auto 0;
             width: 220px;
         }
     </style>
@@ -72,8 +64,10 @@
 
 <h1 id="question">will U be my vatenlines this year?</h1>
 
-<button id="yesBtn" onclick="sayYes()">Yes</button>
-<button id="noBtn" onclick="handleNo()">No</button>
+<div class="buttons" id="buttonWrap">
+    <button id="yesBtn" onclick="sayYes()">Yes</button>
+    <button id="noBtn" onclick="handleNo()">No</button>
+</div>
 
 <div id="message"></div>
 <img id="flower" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="cute flower">
@@ -110,8 +104,7 @@
         document.getElementById("message").innerText = "YAYYYYYYY!! 💖🌸";
         document.getElementById("flower").style.display = "block";
 
-        document.getElementById("yesBtn").style.display = "none";
-        document.getElementById("noBtn").style.display = "none";
+        document.getElementById("buttonWrap").style.display = "none";
         document.getElementById("question").style.display = "none";
     }
 
@@ -119,7 +112,7 @@
         const yesBtn = document.getElementById("yesBtn");
         const noBtn = document.getElementById("noBtn");
 
-        // Gentle unlimited growth
+        // Gentle growth
         yesScale += 0.12;
         yesBtn.style.transform = "scale(" + yesScale + ")";
 
