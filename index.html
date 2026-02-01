@@ -71,7 +71,14 @@
     let noClicks = 0;
 
     const noMessages = [
-        "are you sure?",
+        "are you sure? 🥺",
+        "but we'd look cute together 💞",
+        "I promise I’ll make you smile 🌸",
+        "think of the memories we could make ✨",
+        "I’ll share my fries with you 🍟",
+        "we could be adorable together 😌",
+        "rom-com moment right here 🎬",
+        "okay but imagine us on a cute date 🌹",
         "really sure?",
         "really really sure?",
         "think again 🥺",
@@ -127,8 +134,9 @@
         const yesBtn = document.getElementById("yesBtn");
         const noBtn = document.getElementById("noBtn");
 
-        // GIANT growth
-        yesScale += 1.0;
+        // Slower growth with a max limit
+        yesScale += 0.35;
+        if (yesScale > 4) yesScale = 4; // prevents it from getting absurdly huge
         yesBtn.style.transform = "scale(" + yesScale + ")";
 
         // Change No text
