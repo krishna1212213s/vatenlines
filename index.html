@@ -17,12 +17,12 @@
             text-align: center;
             margin-top: 70px;
             color: #ff4d6d;
-            font-size: 46px;
+            font-size: 50px;
         }
 
         button {
-            padding: 16px 34px;
-            font-size: 22px;
+            padding: 18px 38px;
+            font-size: 24px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
@@ -33,7 +33,7 @@
         #yesBtn {
             background: linear-gradient(45deg, #ff9a9e, #ffb7b2);
             color: white;
-            left: 32%;
+            left: 30%;
             top: 45%;
             z-index: 2;
         }
@@ -41,7 +41,7 @@
         #noBtn {
             background-color: #ff4d4d;
             color: white;
-            left: 58%;
+            left: 60%;
             top: 45%;
             z-index: 3;
         }
@@ -49,9 +49,9 @@
         #message {
             position: absolute;
             width: 100%;
-            top: 70%;
+            top: 72%;
             text-align: center;
-            font-size: 26px;
+            font-size: 28px;
             font-weight: bold;
             color: #ff4d6d;
         }
@@ -88,8 +88,8 @@
         const yesBtn = document.getElementById("yesBtn");
         const noBtn = document.getElementById("noBtn");
 
-        // MASSIVE growth
-        yesScale += 0.6;  
+        // INSANE growth
+        yesScale += 1.0;  
         yesBtn.style.transform = "scale(" + yesScale + ")";
 
         // Change No text
