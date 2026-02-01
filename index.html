@@ -31,12 +31,8 @@
         }
 
         .buttons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
             position: relative;
-            min-height: 100px;
+            height: 120px;
         }
 
         button {
@@ -45,21 +41,22 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            white-space: nowrap;
+            transition: all 0.25s ease;
+            position: absolute;
         }
 
         #yesBtn {
             background: linear-gradient(45deg, #ff9a9e, #fad0c4);
             color: white;
-            z-index: 2;
+            left: 20%;
+            top: 30px;
         }
 
         #noBtn {
             background-color: #ff4d4d;
             color: white;
-            position: absolute;
             left: 55%;
+            top: 30px;
         }
 
         #message {
@@ -78,14 +75,14 @@
 
     <div class="buttons">
         <button id="yesBtn" onclick="sayYes()">Yes</button>
-        <button id="noBtn" onclick="growYes()">No</button>
+        <button id="noBtn" onclick="handleNo()">No</button>
     </div>
 
     <div id="message"></div>
 </div>
 
 <script>
-    let yesSize = 18;
+    let yesScale = 1;
     let noClicks = 0;
 
     const noMessages = [
@@ -102,18 +99,16 @@
         document.getElementById("message").innerText = "Yay!! I knew it!";
     }
 
-    function growYes() {
+    function handleNo() {
         const yesBtn = document.getElementById("yesBtn");
         const noBtn = document.getElementById("noBtn");
         const box = document.getElementById("box");
-        const message = document.getElementById("message");
 
-        // Make Yes grow
-        yesSize += 6;
-        yesBtn.style.fontSize = yesSize + "px";
-        yesBtn.style.padding = (14 + yesSize/4) + "px " + (30 + yesSize/3) + "px";
+        // Grow Yes button
+        yesScale += 0.2;
+        yesBtn.style.transform = "scale(" + yesScale + ")";
 
-        // Change No button text with silly confirmations
+        // Change No text
         if (noClicks < noMessages.length) {
             noBtn.innerText = noMessages[noClicks];
             noClicks++;
@@ -121,32 +116,20 @@
             noBtn.innerText = "ok fine you win 😤";
         }
 
-        moveNoButton(yesBtn, noBtn, box);
+        moveNoButton(noBtn, box);
     }
 
-    function moveNoButton(yesBtn, noBtn, box) {
-        const yesRect = yesBtn.getBoundingClientRect();
-        const noRect = noBtn.getBoundingClientRect();
+    function moveNoButton(noBtn, box) {
+        const boxRect = box.getBoundingClientRect();
 
-        const overlap = !(
-            yesRect.right < noRect.left ||
-            yesRect.left > noRect.right ||
-            yesRect.bottom < noRect.top ||
-            yesRect.top > noRect.bottom
-        );
+        const maxX = boxRect.width - noBtn.offsetWidth - 20;
+        const maxY = boxRect.height - noBtn.offsetHeight - 20;
 
-        if (overlap) {
-            const boxRect = box.getBoundingClientRect();
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
 
-            const maxX = boxRect.width - noBtn.offsetWidth - 20;
-            const maxY = boxRect.height - noBtn.offsetHeight - 20;
-
-            const randomX = Math.max(10, Math.random() * maxX);
-            const randomY = Math.max(80, Math.random() * maxY);
-
-            noBtn.style.left = randomX + "px";
-            noBtn.style.top = randomY + "px";
-        }
+        noBtn.style.left = randomX + "px";
+        noBtn.style.top = randomY + "px";
     }
 </script>
 
