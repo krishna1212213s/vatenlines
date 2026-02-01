@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Fun Website</title>
+    <title>Valentine Question</title>
     <style>
         body {
             margin: 0;
@@ -9,54 +9,75 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
             font-family: Arial, sans-serif;
+            background-color: #ffd6e7; /* light pink */
             text-align: center;
-            color: white;
-            background: url("https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif") no-repeat center center/cover;
         }
 
         .box {
-            background: rgba(0,0,0,0.6);
-            padding: 30px;
-            border-radius: 15px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin-bottom: 30px;
         }
 
         button {
-            padding: 10px 20px;
+            padding: 12px 25px;
             margin: 10px;
-            font-size: 16px;
+            font-size: 18px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        #result {
-            margin-top: 20px;
-            font-size: 18px;
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #ccc;
+        }
+
+        #message {
+            margin-top: 25px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ff4d6d;
         }
     </style>
 </head>
 <body>
 
 <div class="box">
-    <h1>Do you like this website?</h1>
+    <h1>will U be my vatenlines this year?</h1>
 
-    <button onclick="answerYes()">Yes 😎</button>
-    <button onclick="answerNo()">No 😢</button>
+    <button id="yesBtn" onclick="sayYes()">Yes</button>
+    <button id="noBtn" onclick="growYes()">No</button>
 
-    <div id="result"></div>
+    <div id="message"></div>
 </div>
 
 <script>
-    function answerYes() {
-        document.getElementById("result").innerHTML = "Yay! You're awesome 🚀";
+    let yesSize = 18; // starting font size
+
+    function sayYes() {
+        document.getElementById("message").innerText = "Yay!! I knew it!";
     }
 
-    function answerNo() {
-        document.getElementById("result").innerHTML = "That's okay, I'll improve 😌";
+    function growYes() {
+        yesSize += 6; // increase size every time No is clicked
+        const yesBtn = document.getElementById("yesBtn");
+        yesBtn.style.fontSize = yesSize + "px";
+        yesBtn.style.padding = (12 + yesSize / 3) + "px " + (25 + yesSize / 2) + "px";
     }
 </script>
 
 </body>
 </html>
+
