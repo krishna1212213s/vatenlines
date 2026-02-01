@@ -17,23 +17,23 @@
             text-align: center;
             margin-top: 70px;
             color: #ff4d6d;
-            font-size: 42px; /* BIGGER QUESTION */
+            font-size: 46px;
         }
 
         button {
-            padding: 14px 30px;
-            font-size: 20px;
+            padding: 16px 34px;
+            font-size: 22px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: transform 0.25s ease;
+            transition: transform 0.2s ease;
             position: absolute;
         }
 
         #yesBtn {
             background: linear-gradient(45deg, #ff9a9e, #ffb7b2);
             color: white;
-            left: 35%;
+            left: 32%;
             top: 45%;
             z-index: 2;
         }
@@ -41,7 +41,7 @@
         #noBtn {
             background-color: #ff4d4d;
             color: white;
-            left: 55%;
+            left: 58%;
             top: 45%;
             z-index: 3;
         }
@@ -49,9 +49,9 @@
         #message {
             position: absolute;
             width: 100%;
-            top: 68%;
+            top: 70%;
             text-align: center;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
             color: #ff4d6d;
         }
@@ -88,8 +88,8 @@
         const yesBtn = document.getElementById("yesBtn");
         const noBtn = document.getElementById("noBtn");
 
-        // YES GROWS MORE DRAMATICALLY
-        yesScale += 0.35; 
+        // MASSIVE growth
+        yesScale += 0.6;  
         yesBtn.style.transform = "scale(" + yesScale + ")";
 
         // Change No text
