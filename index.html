@@ -6,33 +6,16 @@
         body {
             margin: 0;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             font-family: Arial, sans-serif;
             background-color: #ffd6e7;
             text-align: center;
-        }
-
-        .box {
-            position: relative;
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            width: 90%;
-            max-width: 420px;
             overflow: hidden;
+            position: relative;
         }
 
         h1 {
-            margin-bottom: 30px;
+            margin-top: 80px;
             color: #ff4d6d;
-        }
-
-        .buttons {
-            position: relative;
-            height: 120px;
         }
 
         button {
@@ -41,45 +24,44 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: transform 0.25s ease;
             position: absolute;
         }
 
         #yesBtn {
             background: linear-gradient(45deg, #ff9a9e, #fad0c4);
             color: white;
-            left: 20%;
-            top: 30px;
+            left: 35%;
+            top: 45%;
+            z-index: 2; /* Always above No */
         }
 
         #noBtn {
             background-color: #ff4d4d;
             color: white;
             left: 55%;
-            top: 30px;
+            top: 45%;
+            z-index: 1;
         }
 
         #message {
-            margin-top: 25px;
-            font-size: 20px;
+            position: absolute;
+            width: 100%;
+            top: 65%;
+            font-size: 22px;
             font-weight: bold;
             color: #ff4d6d;
-            min-height: 28px;
         }
     </style>
 </head>
 <body>
 
-<div class="box" id="box">
-    <h1>will U be my vatenlines this year?</h1>
+<h1>will U be my vatenlines this year?</h1>
 
-    <div class="buttons">
-        <button id="yesBtn" onclick="sayYes()">Yes</button>
-        <button id="noBtn" onclick="handleNo()">No</button>
-    </div>
+<button id="yesBtn" onclick="sayYes()">Yes</button>
+<button id="noBtn" onclick="handleNo()">No</button>
 
-    <div id="message"></div>
-</div>
+<div id="message"></div>
 
 <script>
     let yesScale = 1;
@@ -102,9 +84,8 @@
     function handleNo() {
         const yesBtn = document.getElementById("yesBtn");
         const noBtn = document.getElementById("noBtn");
-        const box = document.getElementById("box");
 
-        // Grow Yes button
+        // Grow Yes
         yesScale += 0.2;
         yesBtn.style.transform = "scale(" + yesScale + ")";
 
@@ -116,14 +97,14 @@
             noBtn.innerText = "ok fine you win 😤";
         }
 
-        moveNoButton(noBtn, box);
+        moveNoButton(noBtn);
     }
 
-    function moveNoButton(noBtn, box) {
-        const boxRect = box.getBoundingClientRect();
+    function moveNoButton(noBtn) {
+        const padding = 20;
 
-        const maxX = boxRect.width - noBtn.offsetWidth - 20;
-        const maxY = boxRect.height - noBtn.offsetHeight - 20;
+        const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+        const maxY = window.innerHeight - noBtn.offsetHeight - padding;
 
         const randomX = Math.random() * maxX;
         const randomY = Math.random() * maxY;
