@@ -11,37 +11,33 @@
             background-color: #ffd6e7;
             font-family: Arial, sans-serif;
             overflow: hidden;
+            position: relative;
         }
 
         h1 {
             text-align: center;
-            margin-top: 70px;
-            color: #ff4d6d;
-            font-size: 50px;
-        }
-
-        .buttons {
-            position: relative;
-            height: 200px;
             margin-top: 60px;
+            color: #ff4d6d;
+            font-size: 52px;
         }
 
         button {
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.25s ease;
             white-space: nowrap;
             position: absolute;
+            transition: all 0.25s ease;
         }
 
         #yesBtn {
             background: linear-gradient(45deg, #ff9a9e, #ffb7b2);
             color: white;
-            padding: 18px 38px;
-            font-size: 24px;
-            left: 30%;
-            top: 60px;
+            padding: 20px 50px;
+            font-size: 26px;
+            left: 35%;
+            top: 45%;
+            z-index: 2;
         }
 
         #noBtn {
@@ -50,21 +46,27 @@
             padding: 18px 38px;
             font-size: 24px;
             left: 60%;
-            top: 60px;
+            top: 45%;
+            z-index: 3;
         }
 
         #message {
+            position: absolute;
+            width: 100%;
+            top: 70%;
             text-align: center;
-            margin-top: 40px;
-            font-size: 30px;
+            font-size: 32px;
             font-weight: bold;
             color: #ff4d6d;
         }
 
         #flower {
             display: none;
-            margin: 30px auto 0;
-            width: 220px;
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 240px;
         }
     </style>
 </head>
@@ -72,17 +74,15 @@
 
 <h1 id="question">will U be my vatenlines this year?</h1>
 
-<div class="buttons" id="buttonWrap">
-    <button id="yesBtn" onclick="sayYes()">Yes</button>
-    <button id="noBtn" onclick="handleNo()">No</button>
-</div>
+<button id="yesBtn" onclick="sayYes()">Yes</button>
+<button id="noBtn" onclick="handleNo()">No</button>
 
 <div id="message"></div>
 <img id="flower" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="cute flower">
 
 <script>
-    let yesSize = 24;
-    let yesPad = 38;
+    let yesFont = 26;
+    let yesPadX = 50;
     let noClicks = 0;
 
     const noMessages = [
@@ -99,20 +99,14 @@
         "think again 🥺",
         "last chance!",
         "one more chance?",
-        "another last chance 😭",
-        "okay but… are you REALLY sure?",
-        "what if you reconsider? 👉👈",
-        "please don’t do this to me 💔",
-        "my heart can’t take this",
-        "try clicking yes instead 😌",
-        "I’ll be very sad…",
-        "like VERY sad 😢"
+        "another last chance 😭"
     ];
 
     function sayYes() {
         document.getElementById("message").innerText = "YAYYYYYYY!! 💖🌸";
         document.getElementById("flower").style.display = "block";
-        document.getElementById("buttonWrap").style.display = "none";
+        document.getElementById("yesBtn").style.display = "none";
+        document.getElementById("noBtn").style.display = "none";
         document.getElementById("question").style.display = "none";
     }
 
@@ -120,11 +114,11 @@
         const yesBtn = document.getElementById("yesBtn");
         const noBtn = document.getElementById("noBtn");
 
-        // Yes grows in real layout size
-        yesSize += 4;
-        yesPad += 8;
-        yesBtn.style.fontSize = yesSize + "px";
-        yesBtn.style.padding = "18px " + yesPad + "px";
+        // YES grows BIGGER each click (real size)
+        yesFont += 6;
+        yesPadX += 14;
+        yesBtn.style.fontSize = yesFont + "px";
+        yesBtn.style.padding = "20px " + yesPadX + "px";
 
         // Change No text
         if (noClicks < noMessages.length) {
@@ -137,6 +131,7 @@
 
     function moveNoButton(btn) {
         const padding = 20;
+
         const maxX = window.innerWidth - btn.offsetWidth - padding;
         const maxY = window.innerHeight - btn.offsetHeight - padding;
 
