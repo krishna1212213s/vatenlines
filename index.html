@@ -22,27 +22,32 @@
         .buttons {
             display: flex;
             justify-content: center;
-            gap: 80px; /* space between Yes and No */
+            align-items: center;
+            gap: 60px;
             margin-top: 80px;
+            flex-wrap: wrap;
         }
 
         button {
-            padding: 18px 38px;
-            font-size: 24px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: transform 0.25s ease;
+            transition: all 0.25s ease;
+            white-space: nowrap;
         }
 
         #yesBtn {
             background: linear-gradient(45deg, #ff9a9e, #ffb7b2);
             color: white;
+            padding: 18px 38px;
+            font-size: 24px;
         }
 
         #noBtn {
             background-color: #ff4d4d;
             color: white;
+            padding: 18px 38px;
+            font-size: 24px;
         }
 
         #message {
@@ -73,7 +78,8 @@
 <img id="flower" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="cute flower">
 
 <script>
-    let yesScale = 1;
+    let yesSize = 24;      // font size
+    let yesPad = 38;       // horizontal padding
     let noClicks = 0;
 
     const noMessages = [
@@ -103,7 +109,6 @@
     function sayYes() {
         document.getElementById("message").innerText = "YAYYYYYYY!! 💖🌸";
         document.getElementById("flower").style.display = "block";
-
         document.getElementById("buttonWrap").style.display = "none";
         document.getElementById("question").style.display = "none";
     }
@@ -112,10 +117,14 @@
         const yesBtn = document.getElementById("yesBtn");
         const noBtn = document.getElementById("noBtn");
 
-        // Gentle growth
-        yesScale += 0.12;
-        yesBtn.style.transform = "scale(" + yesScale + ")";
+        // Make Yes grow in REAL size (not just visual scale)
+        yesSize += 4;       // increases text size
+        yesPad += 8;        // increases button width
 
+        yesBtn.style.fontSize = yesSize + "px";
+        yesBtn.style.padding = "18px " + yesPad + "px";
+
+        // Change No text
         if (noClicks < noMessages.length) {
             noBtn.innerText = noMessages[noClicks];
             noClicks++;
