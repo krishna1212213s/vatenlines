@@ -10,6 +10,7 @@
             width: 100%;
             background-color: #ffd6e7;
             font-family: Arial, sans-serif;
+            overflow: hidden;
         }
 
         h1 {
@@ -20,12 +21,9 @@
         }
 
         .buttons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 60px;
-            margin-top: 80px;
-            flex-wrap: wrap;
+            position: relative;
+            height: 200px;
+            margin-top: 60px;
         }
 
         button {
@@ -34,6 +32,7 @@
             cursor: pointer;
             transition: all 0.25s ease;
             white-space: nowrap;
+            position: absolute;
         }
 
         #yesBtn {
@@ -41,6 +40,8 @@
             color: white;
             padding: 18px 38px;
             font-size: 24px;
+            left: 30%;
+            top: 60px;
         }
 
         #noBtn {
@@ -48,11 +49,13 @@
             color: white;
             padding: 18px 38px;
             font-size: 24px;
+            left: 60%;
+            top: 60px;
         }
 
         #message {
             text-align: center;
-            margin-top: 60px;
+            margin-top: 40px;
             font-size: 30px;
             font-weight: bold;
             color: #ff4d6d;
@@ -78,8 +81,8 @@
 <img id="flower" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="cute flower">
 
 <script>
-    let yesSize = 24;      // font size
-    let yesPad = 38;       // horizontal padding
+    let yesSize = 24;
+    let yesPad = 38;
     let noClicks = 0;
 
     const noMessages = [
@@ -117,10 +120,9 @@
         const yesBtn = document.getElementById("yesBtn");
         const noBtn = document.getElementById("noBtn");
 
-        // Make Yes grow in REAL size (not just visual scale)
-        yesSize += 4;       // increases text size
-        yesPad += 8;        // increases button width
-
+        // Yes grows in real layout size
+        yesSize += 4;
+        yesPad += 8;
         yesBtn.style.fontSize = yesSize + "px";
         yesBtn.style.padding = "18px " + yesPad + "px";
 
@@ -129,6 +131,20 @@
             noBtn.innerText = noMessages[noClicks];
             noClicks++;
         }
+
+        moveNoButton(noBtn);
+    }
+
+    function moveNoButton(btn) {
+        const padding = 20;
+        const maxX = window.innerWidth - btn.offsetWidth - padding;
+        const maxY = window.innerHeight - btn.offsetHeight - padding;
+
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        btn.style.left = randomX + "px";
+        btn.style.top = randomY + "px";
     }
 </script>
 
